@@ -1,0 +1,24 @@
+<div class="courses-container">
+    <mat-accordion>
+        @for(currentCourse of (userCourses$|async);track $index){
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title style="display: flex;justify-content: space-between;width: 100%;">
+                        <span>Course name: </span> {{currentCourse.title}}
+                    </mat-panel-title>
+                    <button mat-raised-button color="primary"class="one-button"(click)="deleteCurrentCourse(currentCourse.id)">
+                        Delete course
+                    </button>
+                </mat-expansion-panel-header>
+                {{currentCourse.description}}
+                <mat-list>
+                    @for(currentLesson of currentCourse.lessons;track $index){
+                        <mat-list-item>
+                            👉🟣 {{currentLesson.title}} - {{currentLesson.content}}
+                        </mat-list-item>
+                    }
+                </mat-list>
+            </mat-expansion-panel>
+        }
+    </mat-accordion>
+</div>

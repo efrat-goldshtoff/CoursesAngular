@@ -1,0 +1,39 @@
+.nav-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(224, 249, 236);
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 15px;
+  }
+  a{
+    font-weight: bold;
+
+  }
+  .profile-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #00d084;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.profile-circle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}

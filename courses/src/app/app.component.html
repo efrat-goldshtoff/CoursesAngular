@@ -1,0 +1,14 @@
+<!-- <main class="main"> -->
+
+  <mat-toolbar color="primary" class="nav-container">
+    <nav class="nav-links">
+      <a mat-button routerLink="/home"routerLinkActive="active">Home</a>
+      <a mat-button routerLink="/coursesAll"routerLinkActive="active">Courses List</a>
+      <a mat-button routerLink="/coursesTeacherManager"routerLinkActive="active">Manager and Teacher</a>
+      <a mat-button routerLink="/userCourses"routerLinkActive="active">User Courses</a> 
+    </nav>
+  </mat-toolbar>
+  <div class="profile-circle">{{this.userName.charAt(0).toUpperCase()}}</div>
+<!-- </main> -->
+
+<router-outlet></router-outlet>
