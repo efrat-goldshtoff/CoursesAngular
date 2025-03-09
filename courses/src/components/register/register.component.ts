@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
           alert('😀  ' + res.message)
         },
         error: (e) => {
-          alert('🙁  ERROR: ' + (e.error.message || 'משהו השתבש'))
+          alert('🙁  ERROR: ' + (e.error.message || 'something went wrong'))
         }
       })
   }

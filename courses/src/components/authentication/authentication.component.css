@@ -1,37 +1,48 @@
 .big-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-  }
-  
-  mat-card {
-    text-align: center;
-    padding: 20px;
-    width: 300px;
-  }
-  mat-card-actions {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .register-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
 }
 
+#mat{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* #small-mat{
+  height: 400px;
+} */
+
+/* mat-card {
+  text-align: center;
+  padding: 20px;
+  width: 300px;
+} */
+
+/* mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+} */
+
+/* .register-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+} */
+
 mat-card {
-    width: 300px;
-    text-align: center;
+  width: 300px;
+  text-align: center;
 }
 
 .center-title {
-    text-align: center;
+  text-align: center;
 }
 
 .center-actions {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
