@@ -1,6 +1,35 @@
 <p>course-details</p>
 <div class="courses-container">
     <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title style="display: flex;
+                  justify-content: space-between;
+                  width:100%">
+                    Course name: {{course.title}}
+                    <div>{{course.description}}</div>
+                    @for (lesson of lessons; track $index) {
+                    <h5>{{lesson.title}}</h5>
+                    <h6>{{lesson.content}}</h6>
+                    @if (isTeacher) {
+                    <button mat-raised-button color="primary" (click)="updateLesson(lesson)">update</button>
+                    <button mat-raised-button color="primary" (click)="deleteLesson(lesson.id)">delete</button>
+                    }
+                    }
+                    <!-- @if (isTeacher) {
+                        <button mat-raised-button color="primary"(click)="addLesson()">
+                            Add lesson
+                        </button>
+                    } -->
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<!-- <p>course-details</p>
+<div class="courses-container">
+    <mat-accordion>
         @for (course of (allCourses$|async) ; track $index) {
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -20,4 +49,4 @@
         </mat-expansion-panel>
         }
     </mat-accordion>
-</div>
+</div> -->

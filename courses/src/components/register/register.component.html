@@ -1,6 +1,5 @@
-<!-- <div class="center-title">Register</div> -->
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
-    <mat-card>
+<mat-card>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
         <mat-card-title class="center-title">Register</mat-card-title>
         <mat-card-content>
             <mat-form-field appearance="fill">
@@ -14,13 +13,13 @@
                 <mat-error>Name must be more than 2 chars</mat-error>
                 }
                 @else if (user['name'].errors['maxLength']){
-                <mat-error>Password must be less than 15 letters</mat-error>
+                <mat-error>Name must be less than 15 letters</mat-error>
                 }
                 }
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>
-                <input matInput formControlName="email" required />
+                <input type="email" matInput formControlName="email" required />
                 @if (user['email']&&user['email'].errors&&user['email'].touched){
                 @if (user['email'].errors['required']){
                 <mat-error>Email is required</mat-error>
@@ -33,7 +32,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" required />
+                <input type="password" matInput formControlName="password" required />
                 @if (user['password']&&user['password'].errors&&user['password'].touched){
                 @if (user['password'].errors['required']){
                 <mat-error>Password is required</mat-error>
@@ -51,7 +50,6 @@
                     <mat-option value="student">Student</mat-option>
                     <mat-option value="teacher">Teacher</mat-option>
                 </mat-select>
-                <!-- <input matInput formControlName="password" required /> -->
                 @if (user['role']&&user['role'].errors&&user['role'].touched){
                 @if (user['role'].errors['required']){
                 <mat-error>Password is required</mat-error>
@@ -64,5 +62,8 @@
                 Submit
             </button>
         </mat-card-actions>
-    </mat-card>
-</form>
+    </form>
+    <button mat-raised-button routerLink="/login">
+        Already have an account? Login here
+    </button>
+</mat-card>

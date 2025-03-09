@@ -1,10 +1,10 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-    <mat-card>
+<mat-card>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <mat-card-title class="center">Login</mat-card-title>
         <mat-card-content>
             <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>
-                <input matInput formControlName="email" required>
+                <input type="email" matInput formControlName="email" required>
                 @if(user['email']&&user['email'].errors&&user['email'].touched){
                 @if(user['email'].errors['required']){
                 <mat-error>Email is required</mat-error>
@@ -16,7 +16,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" required>
+                <input type="password" matInput formControlName="password" required>
                 @if(user['password']&&user['password'].errors&&user['password'].touched){
                 @if(user['password'].errors['required']){
                 <mat-error>Password is required</mat-error>
@@ -32,5 +32,8 @@
                 Submit
             </button>
         </mat-card-actions>
-    </mat-card>
-</form>
+    </form>
+    <button mat-raised-button routerLink="/register">
+        Don't have an account? Sign up here
+    </button>
+</mat-card>
