@@ -29,11 +29,6 @@
     top: 10px;
     left: 10px;
     cursor: pointer;
-}
-
-.profile-circle {
     position: fixed;
-    top: 10px;
-    left: 10px;
     z-index: 1000;
 }

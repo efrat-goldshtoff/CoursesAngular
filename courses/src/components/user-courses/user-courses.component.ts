@@ -18,20 +18,40 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './user-courses.component.css'
 })
 export class UserCoursesComponent implements OnInit {
-  courseId:number=1;
-  userCourses$!:Observable<Course[]>
-  constructor(private coursesService:CoursesService,private route:ActivatedRoute){
-    this.userCourses$ = this.coursesService.userCourses$;
-    this.coursesService.getUserCourses();
-  }
+
+  courses: Course[] | null = null;
+
+  constructor(private coursesService: CoursesService) { }
+
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params=>{
-      const id=params.get('id')
-      this.courseId=id?Number(id):-1;
-      // this.userCourses$
-    })
+    this.loadCourses();
   }
-  deleteCurrentCourse(courseId:number){
-    this.coursesService.deleteCurrentCourseUser(courseId);
+
+  async loadCourses(): Promise<void> {
+    try {
+      (await this.coursesService.getCourses()).subscribe(
+        courses => this.courses == courses
+      );
+    } catch (e) {
+      console.error(e);
+
+    }
   }
+
+  // courseId:number=1;
+  // userCourses$!:Observable<Course[]>
+  // constructor(private coursesService:CoursesService,private route:ActivatedRoute){
+  //   this.userCourses$ = this.coursesService.userCourses$;
+  //   this.coursesService.getCourses();
+  // }
+  // ngOnInit(): void {
+  //   this.route.paramMap.subscribe(params=>{
+  //     const id=params.get('id')
+  //     this.courseId=id?Number(id):-1;
+  //     // this.userCourses$
+  //   })
+  // }
+  // deleteCurrentCourse(courseId:number){
+  //   this.coursesService.deleteCourse(courseId);
+  // }
 }

@@ -1,4 +1,16 @@
-<div >
+<h2>Courses!!</h2>
+@if (courses&&courses.length>0){
+    @for (course of courses; track $index) {
+        👉 <h4>{{course.title}}</h4>
+        <h6> {{course.description}} </h6>
+        <h6> Teacher id: {{course.teacherId}} </h6>
+    }@empty {
+        <p>No courses exist!</p>
+    }
+}
+
+
+<!-- <div >
     <h2>רשימת הקורסים</h2>
 <button mat-raised-button color="primary" class="one-button" (click)="setIsAddCourse()">Add Course</button>
 @if(isAddCourse){
@@ -201,4 +213,4 @@
         }
     </mat-accordion>
 </div>
-</div>
+</div> -->

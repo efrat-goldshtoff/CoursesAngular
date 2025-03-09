@@ -1,4 +1,25 @@
 <div class="courses-container">
+    @if (courses&&courses.length!=0) {
+    <mat-accordion>
+        @for (course of courses; track $index) {
+        👉 🟣<mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title style="display: flex;justify-content: space-between;width: 100%;">
+                    Course name: {{course.title}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>{{course.description}}</p>
+            <p>Teacher id : {{course.teacherId}}</p>
+        </mat-expansion-panel>
+
+        }@empty {
+        <p>No courses exist</p>
+        }
+    </mat-accordion>
+    }
+</div>
+
+<!-- <div class="courses-container">
     <mat-accordion>
         @for(currentCourse of (userCourses$|async);track $index){
             <mat-expansion-panel>
@@ -21,4 +42,4 @@
             </mat-expansion-panel>
         }
     </mat-accordion>
-</div>
+</div> -->

@@ -6,7 +6,7 @@ export const teacherManagerGuard: CanActivateFn = (route, state) => {
   const isLogin = sessionStorage.getItem('authToken');
   const router = inject(Router);
   const service = inject(CoursesService);
-  const status = service.getRoleByToken();
+  const status = sessionStorage.getItem('role');
   console.log(status);
   if (status === 'admin' || status === 'teacher') {
     return true;

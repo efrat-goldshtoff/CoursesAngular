@@ -7,8 +7,10 @@
       <a mat-button routerLink="/coursesTeacherManager"routerLinkActive="active">Manager and Teacher</a>
       <a mat-button routerLink="/userCourses"routerLinkActive="active">User Courses</a> 
     </nav>
+    <button mat-raised-button color="primary"(click)="logOut()">log out</button>
+
   </mat-toolbar>
-  <div class="profile-circle">{{this.userName.charAt(0).toUpperCase()}}</div>
+  <div class="profile-circle">{{this.userName?.charAt(0)?.toUpperCase()}}</div>
   <!-- <button mat-raised-button (click)="logOut()">log out</button> -->
 <!-- </main> -->
 

@@ -24,6 +24,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // this.token = sessionStorage.getItem('authToken');
-    this.userName = this.authService.getCurrentUser().name;
+    this.userName = this.authService.getCurrentUser()?.name;
+  }
+  logOut(){
+    this.authService.logOut();
   }
 }

@@ -14,3 +14,24 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .register-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+mat-card {
+    width: 300px;
+    text-align: center;
+}
+
+.center-title {
+    text-align: center;
+}
+
+.center-actions {
+    display: flex;
+    justify-content: center;
+}
