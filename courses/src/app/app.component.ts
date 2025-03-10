@@ -18,15 +18,13 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 })
 export class AppComponent implements OnInit {
   title = 'courses';
-  // token: any = '';
-  userName!:string;
+  userName!: string;
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    // this.token = sessionStorage.getItem('authToken');
     this.userName = this.authService.getCurrentUser()?.name;
   }
-  logOut(){
+  logOut() {
     this.authService.logOut();
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../../models/course';
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -11,6 +11,7 @@ import { CoursesService } from '../../services/courses/courses.service';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -19,7 +20,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatListModule,
     MatButtonModule,
-    NgTemplateOutlet,
+    // NgTemplateOutlet,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
@@ -31,6 +32,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent implements OnInit {
+  // courses: Observable<Course[]> = new Observable<Course[]>;
   courses: Course[] = [];
   enrolledCourses: Set<number> = new Set();
 
@@ -39,9 +41,9 @@ export class CoursesComponent implements OnInit {
     private snackBar: MatSnackBar,
     private fb: FormBuilder) {
     this.courseForm = this.fb.group({
-      title:[],
-      description:[],
-      teacherId:[]
+      title: [],
+      description: [],
+      teacherId: []
     })
   }
   public courseForm: FormGroup;

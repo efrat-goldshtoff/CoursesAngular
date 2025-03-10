@@ -64,7 +64,7 @@ export class AuthenticationComponent {
   async onSubmit() {
     if (this.authForm.invalid)
       return;
-    const { name, email, password,role } = this.authForm.value;
+    const { name, email, password, role } = this.authForm.value;
 
     try {
       if (this.getMode() == 'Login') {
@@ -75,7 +75,7 @@ export class AuthenticationComponent {
         this.snackBar.open('Login success', 'Close', { duration: 3000 });
       }
       else {
-        this.authService.register({ name, email, password, role}).subscribe(
+        this.authService.register({ name, email, password, role }).subscribe(
           (res: any) => {
             console.log('In Register');
           }

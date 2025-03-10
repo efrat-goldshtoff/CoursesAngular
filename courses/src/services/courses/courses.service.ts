@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Course, Lesson } from '../../models/course';
-import { jwtDecode } from 'jwt-decode';
+import { Course } from '../../models/course';
+// import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'

@@ -30,17 +30,17 @@ export class AuthenticationService {
     return userJson ? JSON.parse(userJson) : null;
   }
 
-  private hasStoredUser():boolean{
+  private hasStoredUser(): boolean {
     return !!sessionStorage.getItem(this.currentUserKey);
   }
 
   register(user: UserRegister): Observable<any> {
     return this.http.post<UserRegister>(`${this.apiUrl}/register`, user).pipe(
-      tap((res:any)=>{
-        sessionStorage.setItem('authToken',res.token);
-        sessionStorage.setItem('userId',res.userId);
-        sessionStorage.setItem('role',res.role);
-        sessionStorage.setItem('userName',res.userName);
+      tap((res: any) => {
+        sessionStorage.setItem('authToken', res.token);
+        sessionStorage.setItem('userId', res.userId);
+        sessionStorage.setItem('role', res.role);
+        sessionStorage.setItem('userName', res.userName);
         this.setCurrentUser(user);
         this.isLoggedINSubject.next(true);
       })
@@ -49,11 +49,11 @@ export class AuthenticationService {
 
   login(user: UserLogin): Observable<any> {
     return this.http.post<UserLogin>(`${this.apiUrl}/login`, user).pipe(
-      tap((res:any)=>{
-        sessionStorage.setItem('authToken',res.token);
-        sessionStorage.setItem('userId',res.userId);
-        sessionStorage.setItem('role',res.role);
-        sessionStorage.setItem('userName',res.userName);
+      tap((res: any) => {
+        sessionStorage.setItem('authToken', res.token);
+        sessionStorage.setItem('userId', res.userId);
+        sessionStorage.setItem('role', res.role);
+        sessionStorage.setItem('userName', res.userName);
         this.setCurrentUser(user);
         this.isLoggedINSubject.next(true);
       })
@@ -96,8 +96,4 @@ export class AuthenticationService {
 //     console.error('ERROR Token', e);
 //     return '';
 //   }
-// }
-
-// logOut(): void {
-//   sessionStorage.clear();
 // }

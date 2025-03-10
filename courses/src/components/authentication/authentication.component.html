@@ -6,8 +6,6 @@
         <mat-card-actions>
             <button mat-raised-button color="primary" (click)="setMode('Login')">Login</button>
             <button mat-raised-button color="primary" (click)="setMode('Register')">Sign up</button>
-            <!-- <button mat-raised-button color="primary" routerLink="/login">Login</button>
-            <button mat-raised-button color="primary" routerLink="/register">Sign up</button> -->
         </mat-card-actions>
 
         @if(this.getMode()!=''){
@@ -81,9 +79,6 @@
                     </button>
                 </mat-card-actions>
             </form>
-            <!-- <button mat-raised-button routerLink="/login">
-        Already have an account? Login here
-    </button> -->
         </mat-card>
         }
     </mat-card>

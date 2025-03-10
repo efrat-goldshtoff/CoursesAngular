@@ -44,8 +44,8 @@ export class CourseDetailsComponent implements OnInit {
     this.teacherName = this.userService.getUserName(this.course.teacherId);
   }
 
-  addLesson(lesson:Lesson) {
-    this.lessonService.createLesson(this.course.id,lesson).subscribe({
+  addLesson(lesson: Lesson) {
+    this.lessonService.createLesson(this.course.id, lesson).subscribe({
       next: res => {
         this.lessons = res;
       },
@@ -66,8 +66,8 @@ export class CourseDetailsComponent implements OnInit {
     })
   }
 
-  updateLesson(lesson:Lesson):void{
-    this.lessonService.updateLesson(this.course.id,lesson).subscribe({
+  updateLesson(lesson: Lesson): void {
+    this.lessonService.updateLesson(this.course.id, lesson).subscribe({
       next: res => {
         this.lessons = res;
       },
@@ -79,13 +79,13 @@ export class CourseDetailsComponent implements OnInit {
 
   deleteLesson(lessonId: number): void {
     this.lessonService.deleteLesson(this.course.id, lessonId).subscribe({
-      next:res => {
-        this.getLessons(); 
+      next: res => {
+        this.getLessons();
       },
-      error:(e) => {
+      error: (e) => {
         console.error('Error deleting lesson', e);
       }
-   } );
+    });
   }
 
   // openLessonDialog(lessonId:number,courseName:string,teacherName:string,courseId:number):void{
@@ -93,14 +93,3 @@ export class CourseDetailsComponent implements OnInit {
   // }
 
 }
-// allCourses$: Observable<Course[]> | undefined;
-// this.allCourses$ = this.coursesService.allCourses$;
-// private coursesService: CoursesService,
-// this.coursesService.getCourses();
-// this.coursesService.deleteCurrentCourseUser(courseId);
-// this.coursesService.addCourseToUser(courseId);
-/*
-  addCourseToUser(courseId: number) {
-  }
-  deleteCourse(courseId: number) {
-  } */
