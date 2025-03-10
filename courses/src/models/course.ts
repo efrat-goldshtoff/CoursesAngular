@@ -8,6 +8,14 @@ export class Course {
     ) { }
 }
 
+export class CourseAdd {
+    constructor(
+        public title: string,
+        public description: string,
+        public teacherId: number,
+    ) { }
+}
+
 export class Lesson {
     constructor(
         public id: number,

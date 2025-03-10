@@ -1,24 +1,89 @@
-<mat-accordion>
+<div class="big-div">
+    <mat-card id="mat">
+        <mat-card-header>
+            <mat-card-title class="center-title">Courses!!</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            @if (courses && courses.length > 0){
+            <mat-card class="small-mat">
+                @for (course of courses; track $index) {
+                <mat-card-header>
+                    <mat-card-title>
+                        👉{{course.title}}
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>{{course.description}}</div>
+                    <div>Teacher id: {{course.teacherId}}</div>
+                </mat-card-content>
+                }@empty {
+                <p>No courses exist!</p>
+                }
+            </mat-card>
+            }
+            <button mat-raised-button (click)="setAdd('add')" color="primary">add course</button>
 
-    <mat-card-title>Courses!!</mat-card-title>
+        </mat-card-content>
+    </mat-card>
 
-    @if (courses&&courses.length>0){
-    @for (course of courses; track $index) {
-    👉 <h4>{{course.title}}</h4>
-    <h6> {{course.description}} </h6>
-    <h6> Teacher id: {{course.teacherId}} </h6>
-    }@empty {
-    <p>No courses exist!</p>
-    }
-    }
-    <button mat-raised-button color="primary">add course</button>
     @if(getAdd()=='add'){
-    <form [formGroup]="courseForm" (ngSubmit)="onSubmitAddCourse()">
+    <mat-card class="small-mat">
+        <form [formGroup]="courseForm" (ngSubmit)="onSubmitAddCourse()">
+            <mat-card-title class="center-title">Add course</mat-card-title>
+            <mat-card-content>
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="title" required />
+                    @if(cont['title']&&cont['title'].errors&&cont['title'].touched){
+                    @if(cont['title'].errors['required']){
+                    <mat-error>Title is required</mat-error>
+                    }
+                    @else if(cont['title'].errors['minLength']) {
+                    <mat-error>Title must be more than 2 letters</mat-error>
+                    }
+                    }
+                </mat-form-field>
 
-    </form>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <input matInput formControlName="description" required />
+                    @if(cont['description']&&cont['description'].errors&&cont['description'].touched){
+                    @if(cont['description'].errors['required']){
+                    <mat-error>Description is required</mat-error>
+                    }
+                    @else if(cont['description'].errors['minLength']) {
+                    <mat-error>Description must be more than 2 letters</mat-error>
+                    }
+                    @else if(cont['description'].errors['maxLength']) {
+                    <mat-error>Description must be less than 30 letters</mat-error>
+                    }
+                    }
+                </mat-form-field>
 
+                <!-- <mat-form-field>
+                        <mat-label>TeacherId</mat-label>
+                        <input matInput formControlName="teacher" required />
+                        @if(cont['teacher']&&cont['teacher'].errors&&cont['teacher'].touched){
+                        @if(cont['teacher'].errors['required']){
+                        <mat-error>Teacher is required</mat-error>
+                        }
+                        @else if(cont['teacher'].errors['minLength']) {
+                        <mat-error>Teacher must be more than 2 letters</mat-error>
+                        }
+                        }
+                    </mat-form-field> -->
+
+            </mat-card-content>
+            <mat-card-actions class="center-actions">
+                <button mat-raised-button color="primary" (click)="setAdd('')" type="submit"
+                    [disabled]="courseForm.invalid">
+                    Add course
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
     }
-</mat-accordion>
+</div>
 
 
 <!-- <div >

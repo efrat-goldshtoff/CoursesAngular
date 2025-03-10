@@ -1,0 +1,26 @@
+.big-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+mat-card {
+    /* width: 300px; */
+    text-align: center;
+}
+
+#mat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-title {
+    text-align: center;
+}
+
+.center-actions {
+    display: flex;
+    justify-content: center;
+}

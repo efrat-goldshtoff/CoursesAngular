@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.css'
 })
+
 export class AuthenticationComponent {
   authForm: FormGroup;
   constructor(
@@ -55,12 +56,15 @@ export class AuthenticationComponent {
   get user(): { [key: string]: AbstractControl } {
     return this.authForm.controls;
   }
+
   setMode(mode1: string) {
     sessionStorage.setItem('mode', mode1)
   }
+
   getMode() {
     return sessionStorage.getItem('mode');
   }
+
   async onSubmit() {
     if (this.authForm.invalid)
       return;

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Course } from '../../models/course';
+import { Course, CourseAdd } from '../../models/course';
 // import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class CoursesService {
     return this.http.get<Course>(`${this.apiUrl}/${id}`, { headers });
   }
 
-  async createCourse(course: Course): Promise<Observable<any>> {
+  async createCourse(course: CourseAdd): Promise<Observable<any>> {
     const token = this.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`

@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { CoursesService } from '../../services/courses/courses.service';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -41,25 +41,57 @@ export class CoursesComponent implements OnInit {
     private snackBar: MatSnackBar,
     private fb: FormBuilder) {
     this.courseForm = this.fb.group({
-      title: [],
-      description: [],
-      teacherId: []
+      title: ['',
+        [Validators.required,
+        Validators.minLength(2)]
+      ],
+      description: ['', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30)
+      ]]
+      // ,
+      // teacherId: ['',[
+      // Validators.required
+      // ]]
     })
   }
+
+  get cont(): { [key: string]: AbstractControl } {
+    return this.courseForm.controls;
+  }
+
   public courseForm: FormGroup;
   ngOnInit(): void {
     this.loadCourses();
   }
 
-  addCourse(add: string) {
-    sessionStorage.setItem('addCourse', '');
+  setAdd(add: string) {
+    sessionStorage.setItem('add', add);
   }
   getAdd() {
-    return sessionStorage.getItem('addCourse');
+    return sessionStorage.getItem('add');
+  }
+  getTeacherId() {
+    return Number(sessionStorage.getItem('id'));
   }
 
+  async onSubmitAddCourse() {
+    if (this.courseForm.invalid)
+      return;
 
-  onSubmitAddCourse() {
+    const { title, description } = this.courseForm.value;
+    try {
+      (await this.coursesService.createCourse({ title, description, teacherId: this.getTeacherId() })).subscribe(
+        (res: any) => {
+          console.log('In Adding Course');
+        }
+      );
+      this.snackBar.open('Adding course success', 'Close', { duration: 3000 });
+
+    } catch (e) {
+      this.snackBar.open('Adding course failed', 'Close', { duration: 3000 });
+    }
 
   }
 
