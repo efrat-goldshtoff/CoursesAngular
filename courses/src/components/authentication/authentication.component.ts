@@ -25,7 +25,6 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class AuthenticationComponent {
   authForm: FormGroup;
-  // public mode = '';
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
@@ -34,7 +33,7 @@ export class AuthenticationComponent {
     this.authForm = this.fb.group({
       name: [{
         value: '',
-        disabled: this.getMode() == 'login'
+        disabled: this.getMode() == 'Login'
       },
       [Validators.required,
       Validators.minLength(2)
@@ -44,26 +43,31 @@ export class AuthenticationComponent {
       ]],
       password: ['', [Validators.required,
       Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
-      ]]
+      ]],
+      role: [
+        null,
+        this.getMode() == 'Login' ? [] :
+          [
+            Validators.required
+          ]]
     });
   }
-    get user(): { [key: string]: AbstractControl } {
-      return this.authForm.controls;
-    }
-  setMode(mode1: string) {
-    sessionStorage.setItem('mode',mode1)
-    // this.mode = mode1;
+  get user(): { [key: string]: AbstractControl } {
+    return this.authForm.controls;
   }
-  getMode(){
+  setMode(mode1: string) {
+    sessionStorage.setItem('mode', mode1)
+  }
+  getMode() {
     return sessionStorage.getItem('mode');
   }
   async onSubmit() {
     if (this.authForm.invalid)
       return;
-    const { name, email, password } = this.authForm.value;
+    const { name, email, password,role } = this.authForm.value;
 
     try {
-      if (this.getMode() == 'login') {
+      if (this.getMode() == 'Login') {
         this.authService.login({ email, password }).subscribe(
           (res: any) => {
             console.log('In Login');
@@ -71,13 +75,14 @@ export class AuthenticationComponent {
         this.snackBar.open('Login success', 'Close', { duration: 3000 });
       }
       else {
-        this.authService.register({ name, email, password, role: 'student' }).subscribe(
+        this.authService.register({ name, email, password, role}).subscribe(
           (res: any) => {
             console.log('In Register');
           }
         );
         this.snackBar.open('Register success', 'Close', { duration: 3000 });
         // this.onSwitchMode();
+        this.setMode('');
       }
       this.authForm.reset();
     } catch (e) {
@@ -85,13 +90,17 @@ export class AuthenticationComponent {
     }
   }
 
-  /*  onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode;
-    if (this.isLoginMode) {
+  onSwitchMode() {
+    if (this.getMode() == 'Login')
+      this.setMode('Register');
+    else {
+      this.setMode('Login');
+    }
+    if (this.getMode() == 'Login') {
       this.authForm.get('name')?.disable();
     } else {
       this.authForm.get('name')?.enable();
     }
-  } */
+  }
 
 }

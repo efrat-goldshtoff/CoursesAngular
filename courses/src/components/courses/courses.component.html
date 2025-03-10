@@ -8,6 +8,12 @@
         <p>No courses exist!</p>
     }
 }
+<button mat-raised-button color="primary">add course</button>
+@if(getAdd()=='add'){
+<form [formGroup]="courseForm" (ngSubmit)="onSubmitAddCourse()">
+
+</form>
+}
 
 
 <!-- <div >
